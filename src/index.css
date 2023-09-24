@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+body {
+  --light-blue: hsl(200, 20%, 10%);
+  --dark-blue: hsl(200, 20%, 8%);
+  font-family: Rubik;
+  color: white;
+  background-color: var(--bg-color);
+  padding-top: 10px;
+  margin: 0;
+  position: relative;
+  padding: 0;
+  background: linear-gradient(#232035, #14121f);
+}
+
+.home h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: normal;
+  padding-block: 60px 40px;
+  font-size: xx-large;
+  scale: 1.2;
+  width: 80%;
+}
+.home h2 {
+  margin-top: 0;
+  text-align: center;
+  font-weight: normal;
+}
