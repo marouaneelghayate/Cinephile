@@ -11,6 +11,7 @@ import SearchBar from '../../components/search-bar/search-bar.component.jsx';
 import CompactList from '../../components/compact-list/compact-list.component.jsx';
 
 import { HomeSearchContainer } from './home.style.jsx';
+import { clearMovies } from '../../store/slices/movies.slice.js';
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -30,6 +31,7 @@ export default function Home() {
         batch(() => {
           setTimeout(() => {
             dispatch(setIsinputfocused(false));
+            dispatch(clearMovies())
           }, movies.length > 0 ? 200 : 2);
           dispatch(setValue(''));
         });

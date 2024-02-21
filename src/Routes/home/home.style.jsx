@@ -9,6 +9,7 @@ export const HomeSearchContainer = styled.div`
   translate: 0 ${({ $isfocused }) => ($isfocused ? '18px' : 0)};
   transition: 0.2s ease-out;
   height: max-content;
+  transition-delay: ${({$isfocused}) => $isfocused ? '0' : '.1s'};
 
   & h3 {
     font-weight: normal;
@@ -23,5 +24,6 @@ export const HomeSearchContainer = styled.div`
     transition: 0.2s ease-out;
     cursor: pointer;
     z-index: 3;
+    transition-delay: ${({$isfocused}) => $isfocused ? '0' : '.1s'};
   }
 `;
