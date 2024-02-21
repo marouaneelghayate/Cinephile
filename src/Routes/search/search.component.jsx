@@ -1,6 +1,6 @@
 // import { useContext, useEffect,useState } from "react";
 import { useEffect, useRef } from 'react';
-import SearchBar from '../../components/search-bar/search-bar.jsx';
+import SearchBar from '../../components/search-bar/search-bar.component.jsx';
 import { SearchBarContainer, SearchContainer } from './search.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsinputfocused } from '../../store/slices/searchfield.slice';

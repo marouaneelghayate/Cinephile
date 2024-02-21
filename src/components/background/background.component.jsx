@@ -1,12 +1,19 @@
-/* eslint-disable react/prop-types */
 import { useLocation } from 'react-router-dom';
-import { BackgroundContainer } from './background.style';
+import {
+  HomeBackgroundContainer,
+  MovieBackgroundContainer,
+} from './background.style';
 
 export default function Background({ image }) {
-  const { pathname } = useLocation();
-  return (
-    <BackgroundContainer $isHome={pathname == '/' ? 1 : 0}>
+  const isHome = useLocation().pathname == '/';
+
+  return isHome ? (
+    <HomeBackgroundContainer>
       <img src={image} />
-    </BackgroundContainer>
+    </HomeBackgroundContainer>
+  ) : (
+    <MovieBackgroundContainer>
+      <img src={image} />
+    </MovieBackgroundContainer>
   );
 }
