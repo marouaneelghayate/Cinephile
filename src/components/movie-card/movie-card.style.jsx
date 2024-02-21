@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  &:nth-of-type(odd) {
+  &:nth-of-type(even) {
     background: var(--dark-blue);
   }
-  &:nth-of-type(even) {
+  &:nth-of-type(odd) {
     background: var(--light-blue);
   }
   display: flex;
@@ -13,7 +13,7 @@ export const CardContainer = styled.div`
   cursor: pointer;
   transition: all .2s;
   &:hover {
-    background: #364768;
+    background: #222a3c;
   }
 `;
 

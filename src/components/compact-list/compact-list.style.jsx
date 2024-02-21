@@ -4,9 +4,12 @@ export const MoviesList = styled.div`
   display: grid;
   max-height: 400px;
   overflow: hidden;
-  grid-template-rows: ${({ $isfocused }) => ($isfocused ? '1fr' : '0fr')};
-  background: ${({ $isfocused }) => ($isfocused ? 'var(--light-blue)' : 'white')};
-  transition: 0.2s;
+  grid-template-rows: ${({ $inputHasValue, $isfocused }) =>
+    $isfocused && $inputHasValue ? '1fr' : '0fr'};
+  background: transparent;
+  transition: ${({ $inputHasValue, $isfocused }) =>
+    $isfocused && $inputHasValue ? '.3s ease-out' : '.2s ease-in'};
+
   & p,
   div {
     margin: 0;

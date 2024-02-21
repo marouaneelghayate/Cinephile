@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Nabataean&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
 
 body {
   --light-blue: hsl(200, 20%, 10%);
@@ -15,8 +15,8 @@ body {
 }
 
 .home h1 {
-  margin: 0 auto;
-  font-family: 'Noto Sans Nabataean', sans-serif;
+  margin: 50px auto 0 auto;
+  font-family: "Protest Guerrilla", sans-serif;
   text-align: center;
   font-weight: normal;
   padding-block: 60px 40px;
@@ -24,8 +24,4 @@ body {
   scale: 1.2;
   width: 80%;
 }
-.home h2 {
-  margin-top: 0;
-  text-align: center;
-  font-weight: normal;
-}
+

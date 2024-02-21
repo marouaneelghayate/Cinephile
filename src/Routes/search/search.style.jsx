@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { HomeContainer } from '../home/home.style.jsx';
+import { HomeSearchContainer } from '../home/home.style.jsx';
 
-export const SearchBarContainer = styled(HomeContainer)`
+export const SearchBarContainer = styled(HomeSearchContainer)`
   width: 50%;
   border-radius: 20px;
 `;

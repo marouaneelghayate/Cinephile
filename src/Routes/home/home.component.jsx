@@ -1,24 +1,38 @@
-import { useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CompactList from '../../components/compact-list/compact-list.component.jsx';
-import SearchBar from '../../components/search-bar/search-bar.jsx';
-import { HomeContainer } from './home.style.jsx';
-import { setIsinputfocused } from '../../store/slices/searchfield.slice.js';
+import { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector, batch } from 'react-redux';
+
+import {
+  setIsinputfocused,
+  setValue,
+} from '../../store/slices/searchfield.slice.js';
+
 import Background from '../../components/background/background.component.jsx';
+import SearchBar from '../../components/search-bar/search-bar.component.jsx';
+import CompactList from '../../components/compact-list/compact-list.component.jsx';
+
+import { HomeSearchContainer } from './home.style.jsx';
 
 export default function Home() {
   const containerRef = useRef(null);
+  const titleRef = useRef(null);
   const dispatch = useDispatch();
-  const bg_path =
-    'https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQeHEcUpj3JtTaKzNjfNk7JuiGuvS8lQ9_B0wwIdVJZ9d-mJ85Wz6hj2_O1DoPIsJEnEItVxMwkCaqZzcOBNsS_FCHRdawwCd9xURWLxqNCVQ8wbFBSarfPrxyIMZPqLmDNfwSxp25fzQkR7ZJ6tBxiTyzxg.jpg?r=399';
 
-  const isinputfocused = useSelector(
-    state => state.searchFieldReducer.isinputfocused
-  );
+  const { isinputfocused } = useSelector(state => state.searchFieldReducer);
+  const { movies } = useSelector(state => state.moviesReducer);
+  const [titleWidth, setTitleWidth] = useState(0);
+
   useEffect(() => {
+    const titleWidth = titleRef.current.offsetWidth;
+    setTitleWidth(titleWidth);
+
     const handleClickOutside = event => {
       if (!containerRef.current.contains(event.target)) {
-        dispatch(setIsinputfocused(false));
+        batch(() => {
+          setTimeout(() => {
+            dispatch(setIsinputfocused(false));
+          }, movies.length > 0 ? 200 : 2);
+          dispatch(setValue(''));
+        });
       }
     };
 
@@ -27,19 +41,30 @@ export default function Home() {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
-      <Background image={bg_path} />
+      <Background image='/images/home-page.jpg' />
       <div className='home'>
-        <h1>CINEPHILE</h1>
-        <h2>Search movie titles</h2>
+        <h1>
+          <img src='/images/logo-transparent.png' width={150} />
+          <br />
+          CINEPHILE
+        </h1>
       </div>
-      <HomeContainer $isfocused={isinputfocused ? 1 : 0} ref={containerRef}>
+      <HomeSearchContainer
+        $isfocused={isinputfocused}
+        $moviesLoaded={movies.length}
+        ref={containerRef}
+        $titleWidth={titleWidth}
+      >
+        <h3 ref={titleRef} onClick={() => dispatch(setIsinputfocused(true))}>
+          Search movie titles
+        </h3>
         <SearchBar onChange={true} />
         <CompactList />
-      </HomeContainer>
+      </HomeSearchContainer>
     </>
   );
 }
